@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bank</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-area">
+            <h2 class="text-center">The Bank Login Area</h2>
+            <div class="login-field">
+                <h3>Login</h3>
+                <input type="email" class="form-control" placeholder="Email">
+                <br>
+                <input type="password" class="form-control" placeholder="Password">
+                <br>
+    
+                <button id="loginBtn" class="btn btn-success">Login</button>
+            </div>
+        </div>
+
+        <div id="transection-area">
+            <h2 class="text-center">Transection area</h2>
+            <div class="row">
+                <div class="col-md-4">
+                   <div class="deposit money">
+                    <h3>Deposit</h3>
+                    <h1>$ <span id="depositmoney" ></span></h1>
+                   </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="withdraw money">
+                        <h3>Withdraw</h3>
+                    <h1>$ <span id="withdrawMoney"></span></h1>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="balance money">
+                        <h3>Balance</h3>
+                    <h1 >$ <span id="balanceMoney"></span></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="money-form">
+                        <h2>Deposit </h2>
+                    <input id="deposit" type="number" class="form-control" placeholder=" $ add money here you want to Deposit">
+                    <br>
+                    <button id="depositBtn" class="btn btn-success">Deposit</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                   <div class="money-form">
+                    <h2>Withdraw</h2>
+                    <input id="withdraw" type="number" class="form-control" placeholder=" $ add money here you want to Withdraw">
+                    <br>
+                    <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
+                   </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', function(){
+            var loginArea = document.getElementById('login-area');
+            loginArea.style.display = "none";
+            var trnxArea = document.getElementById('transection-area');
+            trnxArea.style.display = "block";
+        });
+
+    </script>
+
+    <script>
+          function addMoney(deposit, balance){
+                var result = deposit + balance;
+                return result;
+            }
+
+            var depositMoney = document.getElementById("depositmoney").defaultValue = "00";
+            document.getElementById('depositmoney').innerHTML = depositMoney;
+
+            var withdrawMoney = document.getElementById("withdrawMoney").defaultValue = "00";
+            document.getElementById('withdrawMoney').innerHTML = withdrawMoney;
+
+            var totalBalance = 1240;
+
+            document.getElementById('balanceMoney').innerHTML = totalBalance;
+
+            var moneyAdded = document.getElementById('depositBtn');
+            moneyAdded.addEventListener("click", function(){
+            depositMoney = parseFloat(document.getElementById('deposit').value);
+                document.getElementById('depositmoney').innerHTML = depositMoney;
+
+                totalBalance = totalBalance + depositMoney;
+                document.getElementById('balanceMoney').innerHTML = totalBalance;
+
+            });
+
+
+
+            var moneyCut = document.getElementById('withdrawBtn');
+            moneyCut.addEventListener("click", function(){
+            cutMoney = parseFloat(document.getElementById('withdraw').value);
+                document.getElementById('withdrawMoney').innerHTML = cutMoney;
+
+                totalBalance = totalBalance - cutMoney;
+                document.getElementById('balanceMoney').innerHTML = totalBalance;
+
+            });
+    </script>
+</body>
+</html>

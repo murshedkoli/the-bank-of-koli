@@ -1,0 +1,40 @@
+.login-field, .money-form{
+    /* margin: 100px 100px; */
+    padding: 50px 50px;
+    border-radius: 10px;
+    box-shadow: 4px 8px 20px 3px #00000059;
+}
+.money{
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    color: white;
+    font-weight: bold;
+    
+}
+
+.money h1{
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#login-area{
+    margin: 100px 0;
+}
+
+#transection-area{
+    margin: 100px 0;
+    display: none;
+}
+
+.deposit{
+    background-color: blue;
+}
+
+.withdraw{
+    background-color: lightsalmon;
+}
+
+.balance{
+    background-color: orange;
+}
