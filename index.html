@@ -13,9 +13,9 @@
             <h2 class="text-center">The Bank Login Area</h2>
             <div class="login-field">
                 <h3>Login</h3>
-                <input type="email" class="form-control" placeholder="Email">
+                <input id="email" type="email" class="form-control" placeholder="Email">
                 <br>
-                <input type="password" class="form-control" placeholder="Password">
+                <input id="password" type="password" class="form-control" placeholder="Password">
                 <br>
     
                 <button id="loginBtn" class="btn btn-success">Login</button>
@@ -28,19 +28,19 @@
                 <div class="col-md-4">
                    <div class="deposit money">
                     <h3>Deposit</h3>
-                    <h1>$ <span id="depositmoney" ></span></h1>
+                    <h1>$ <span id="totalDeposit" >00</span></h1>
                    </div>
                 </div>
                 <div class="col-md-4">
                     <div class="withdraw money">
                         <h3>Withdraw</h3>
-                    <h1>$ <span id="withdrawMoney"></span></h1>
+                    <h1>$ <span id="totalWithdraw">00</span></h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="balance money">
                         <h3>Balance</h3>
-                    <h1 >$ <span id="balanceMoney"></span></h1>
+                    <h1 >$ <span id="totalBalance">1000</span></h1>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <div class="col-md-6">
                     <div class="money-form">
                         <h2>Deposit </h2>
-                    <input id="deposit" type="number" class="form-control" placeholder=" $ add money here you want to Deposit">
+                    <input id="depositMoney" type="number" class="form-control" placeholder=" $ add money here you want to Deposit">
                     <br>
                     <button id="depositBtn" class="btn btn-success">Deposit</button>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="col-md-6">
                    <div class="money-form">
                     <h2>Withdraw</h2>
-                    <input id="withdraw" type="number" class="form-control" placeholder=" $ add money here you want to Withdraw">
+                    <input id="withdrawMoney" type="number" class="form-control" placeholder=" $ add money here you want to Withdraw">
                     <br>
                     <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
                    </div>
@@ -71,6 +71,19 @@
 
     <script>
         document.getElementById('loginBtn').addEventListener('click', function(){
+            // var user = document.getElementById('email').value;
+            // var password = document.getElementById('password').value;
+            // if( user == "murshedkoli@gmail.com" && password == "Murshedk5"){
+            //     var loginArea = document.getElementById('login-area');
+            // loginArea.style.display = "none";
+            // var trnxArea = document.getElementById('transection-area');
+            // trnxArea.style.display = "block";
+            // }
+            // else {
+            //     alert("Your Are Not Allowed To Enter the Bank System")
+            // }
+
+
             var loginArea = document.getElementById('login-area');
             loginArea.style.display = "none";
             var trnxArea = document.getElementById('transection-area');
@@ -80,42 +93,34 @@
     </script>
 
     <script>
-          function addMoney(deposit, balance){
-                var result = deposit + balance;
-                return result;
+          // total withdraw handler
+        document.getElementById("depositBtn").addEventListener("click", function(){
+                const depositMoney = parseFloat(document.getElementById("depositMoney").value);
+
+                getTotal("totalDeposit", depositMoney);
+                getTotal("totalBalance", depositMoney);
+
+                document.getElementById("depositMoney").value = "";
+
+              });
+
+
+              document.getElementById("withdrawBtn").addEventListener("click", function(){
+                const withdrawMoney = parseFloat(document.getElementById("withdrawMoney").value);
+                        
+                            getTotal("totalWithdraw", withdrawMoney);
+                            getTotal("totalBalance", -1 * withdrawMoney);
+
+                        document.getElementById("withdrawMoney").value = "";
+                    });
+
+            
+            function getTotal(id, money){
+                const previousTotal = parseFloat(document.getElementById(id).innerText);
+                const totalNow = previousTotal + money;
+                document.getElementById(id).innerText = totalNow;
             }
 
-            var depositMoney = document.getElementById("depositmoney").defaultValue = "00";
-            document.getElementById('depositmoney').innerHTML = depositMoney;
-
-            var withdrawMoney = document.getElementById("withdrawMoney").defaultValue = "00";
-            document.getElementById('withdrawMoney').innerHTML = withdrawMoney;
-
-            var totalBalance = 1240;
-
-            document.getElementById('balanceMoney').innerHTML = totalBalance;
-
-            var moneyAdded = document.getElementById('depositBtn');
-            moneyAdded.addEventListener("click", function(){
-            depositMoney = parseFloat(document.getElementById('deposit').value);
-                document.getElementById('depositmoney').innerHTML = depositMoney;
-
-                totalBalance = totalBalance + depositMoney;
-                document.getElementById('balanceMoney').innerHTML = totalBalance;
-
-            });
-
-
-
-            var moneyCut = document.getElementById('withdrawBtn');
-            moneyCut.addEventListener("click", function(){
-            cutMoney = parseFloat(document.getElementById('withdraw').value);
-                document.getElementById('withdrawMoney').innerHTML = cutMoney;
-
-                totalBalance = totalBalance - cutMoney;
-                document.getElementById('balanceMoney').innerHTML = totalBalance;
-
-            });
     </script>
 </body>
 </html>
